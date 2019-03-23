@@ -66,7 +66,10 @@ function sendToApiAi(sender, text) {
 
 
 function handleApiAiResponse(sender, response) {
-  let responseText = response.result.fulfillment.speech;
+
+console.log('response from api divya', response);
+    let responseText = response.result.fulfillment.speech;
+
   let responseData = response.result.fulfillment.data;
   let messages = response.result.fulfillment.messages;
   let action = response.result.action;
