@@ -9,7 +9,7 @@ module.exports = (req, res) => {
             var timeOfEvent = entry.time;
             console.log('timeOfEvent', timeOfEvent);
             entry.messaging.forEach(event => {
-                console.log('event', event);
+                console.log('divya event', event);
                 if (event.message && event.message.text) {
                     processMessage(event);
                 } else {
