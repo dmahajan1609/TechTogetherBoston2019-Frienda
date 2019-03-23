@@ -1,10 +1,11 @@
 const API_AI_TOKEN = '416b44623de74aa68b37e14459e9ffdd';
 const apiAiClient = require('apiai')(API_AI_TOKEN);
-const FACEBOOK_ACCESS_TOKEN='EAAclN4uZAyWkBADswVXA9OD29JljnHymEOnHvtblgOBRNFJApddG5ZAYrdZAHUljS48TBIH5ZCE5sk1UpRJrQPYyS26elgxWkyf4Q4ANYGgVsG9vv9uMZBQECtBlfZBqPX8H5rOYSXA7hG2Tzf1OuIMzXDiTJArr5WgJ0VsWNXElgOjMT4yuvx';
+const FACEBOOK_ACCESS_TOKEN = 'EAAclN4uZAyWkBADswVXA9OD29JljnHymEOnHvtblgOBRNFJApddG5ZAYrdZAHUljS48TBIH5ZCE5sk1UpRJrQPYyS26elgxWkyf4Q4ANYGgVsG9vv9uMZBQECtBlfZBqPX8H5rOYSXA7hG2Tzf1OuIMzXDiTJArr5WgJ0VsWNXElgOjMT4yuvx';
 const request = require('request');
 const sessionIds = new Map();
 const uuid = require("uuid");
 const axios = require('axios');
+const service = require('../db/service')
 
 
 const sendTextMessage = async (recipientId, text) => {
@@ -67,18 +68,28 @@ function sendToApiAi(sender, text) {
 
 function handleApiAiResponse(sender, response) {
 
-console.log('response from api divya', response);
-    let responseText = response.result.fulfillment.speech;
+  console.log('response from api divya', response);
+
+  let conversation = {
+    userText: response.result.resolvedQuery,
+    botText: response.result.fulfillment.speech
+  }
+  service.save(sender, conversation);
+
+  console.log('invoked mongo', response);
+  let responseText = response.result.fulfillment.speech;
 
   let responseData = response.result.fulfillment.data;
   let messages = response.result.fulfillment.messages;
   let action = response.result.action;
   let contexts = response.result.contexts;
   let parameters = response.result.parameters;
- 
+
   sendTypingOff(sender);
- 
- if (responseText == "" && !isDefined(action)) {
+
+  console.log('reached here');
+
+  if (responseText == "" && !isDefined(action)) {
     //api ai could not evaluate input.
     console.log("Unknown query" + response.result.resolvedQuery);
     sendTextMessage(
@@ -86,12 +97,14 @@ console.log('response from api divya', response);
       "I'm not sure what you want. Can you be more specific?"
     );
   } else if (isDefined(action)) {
+    console.log('entered action block')
     handleApiAiAction(sender, action, responseText, contexts, parameters);
   } else if (isDefined(responseData) && isDefined(responseData.facebook)) {
     try {
       console.log("Response as formatted message" + responseData.facebook);
       sendTextMessage(sender, responseData.facebook);
     } catch (err) {
+      console.log('throwing error', err);
       sendTextMessage(sender, err.message);
     }
   } else if (isDefined(responseText)) {
@@ -103,14 +116,14 @@ console.log('response from api divya', response);
 
 function handleApiAiAction(sender, action, responseText, contexts, parameters) {
   switch (action) {
-   case "userSentiment":
-     var responseText = "I'm here to listen whenever you're ready to talk about it"
-     sendTextMessage(sender, responseText);
-     break;
-   default:
-     //unhandled action, just send back the text
-   sendTextMessage(sender, responseText);
- }
+    case "userSentiment":
+      var responseText = "I'm here to listen whenever you're ready to talk about it"
+      sendTextMessage(sender, responseText);
+      break;
+    default:
+      //unhandled action, just send back the text
+      sendTextMessage(sender, responseText);
+  }
 }
 
 
@@ -125,7 +138,7 @@ const sendTypingOff = (recipientId) => {
     },
     sender_action: "typing_off"
   };
- 
+
   callSendAPI(messageData);
 }
 
