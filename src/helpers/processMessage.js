@@ -1,6 +1,6 @@
 const API_AI_TOKEN = '416b44623de74aa68b37e14459e9ffdd';
 const apiAiClient = require('apiai')(API_AI_TOKEN);
-const FACEBOOK_ACCESS_TOKEN='EAAclN4uZAyWkBAH3yX3hv7rlj4E0fZAfmuYSCKtYJEQQ1foQ5eyHom9hE3BGwPJEgD3UHGB5ZBPRzZAZ';
+const FACEBOOK_ACCESS_TOKEN='EAAclN4uZAyWkBADswVXA9OD29JljnHymEOnHvtblgOBRNFJApddG5ZAYrdZAHUljS48TBIH5ZCE5sk1UpRJrQPYyS26elgxWkyf4Q4ANYGgVsG9vv9uMZBQECtBlfZBqPX8H5rOYSXA7hG2Tzf1OuIMzXDiTJArr5WgJ0VsWNXElgOjMT4yuvx';
 const request = require('request');
 const sessionIds = new Map();
 const uuid = require("uuid");

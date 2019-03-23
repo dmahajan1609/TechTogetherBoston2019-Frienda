@@ -1,7 +1,7 @@
 const processMessage = require('../helpers/processMessage');
 module.exports = (req, res) => {
     if (req.body.object === 'page') {
-        console.log(JSON.stringify(req));
+        console.log('request freom facebook', req);
         req.body.entry.forEach(entry => {
             console.log('entry', entry);
             var pageId = entry.id;
