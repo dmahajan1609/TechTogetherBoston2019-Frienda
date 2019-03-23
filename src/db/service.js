@@ -4,9 +4,16 @@ const {
     User
 } = require('./model');
 
+
+
 class User {
 
     static async save(senderId, conversation) {
+        const senderId = "abc";
+        const conversation = {
+            userText: 'hi',
+            botText: 'welcome'
+        }
 
         try {
             user = await User.findOneAndUpdate({
