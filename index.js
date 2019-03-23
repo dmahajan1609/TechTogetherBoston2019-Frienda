@@ -26,7 +26,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.listen(3000, () => console.log('Webhook server is listening, port 3000'));
 
-const verificationController = require('./controllers/verification');
-const messageWebhookController = require('./controllers/messageWebhook');
+const verificationController = require('./src/controllers/verification');
+const messageWebhookController = require('./src/controllers/messageWebhook');
 app.get('/', verificationController);
 app.post('/', messageWebhookController);
