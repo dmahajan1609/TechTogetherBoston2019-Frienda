@@ -1,19 +1,15 @@
 'use strict';
 
 const {
-    User
+    User,Conversation
 } = require('./model');
 
 
 
-class User {
+class Users {
 
     static async save(senderId, conversation) {
-        const senderId = "abc";
-        const conversation = {
-            userText: 'hi',
-            botText: 'welcome'
-        }
+      console.log('inside here')
 
         try {
             user = await User.findOneAndUpdate({
@@ -53,4 +49,8 @@ class User {
         }
     }
 
+}
+
+module.exports={
+    Users
 }

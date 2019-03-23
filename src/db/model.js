@@ -15,7 +15,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/conversation-bot-api',{
 const User = new mongoose.model('User',{
     senderId: { type: String, required: true, trim: true },
     createdAt: { type: Date, default: Date.now, required: true },
-    conversations : [{ type: mongoose.Schema.Types.ObjectId, ref: Conversation }]
+    conversations : [{ type: mongoose.Schema.Types.ObjectId, ref: 'Conversation' }]
 
 
 });
@@ -25,7 +25,10 @@ const Conversation = new mongoose.model('Conversation',{
 });
 
 
-module.exports.User = model('User', User);
+module.exports={
+    User,
+    Conversation
+}
 
 
 
