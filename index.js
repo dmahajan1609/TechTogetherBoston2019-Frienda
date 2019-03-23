@@ -22,7 +22,7 @@ const bodyParser = require('body-parser');
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
-    extended: true
+    extended: false
 }));
 app.listen(3000, () => console.log('Webhook server is listening, port 3000'));
 
