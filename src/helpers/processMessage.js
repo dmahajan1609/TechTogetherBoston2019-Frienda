@@ -95,6 +95,7 @@ console.log('response from api divya', response);
       sendTextMessage(sender, err.message);
     }
   } else if (isDefined(responseText)) {
+    console.log('This is being sent back', responseText);
     sendTextMessage(sender, responseText);
   }
 }
