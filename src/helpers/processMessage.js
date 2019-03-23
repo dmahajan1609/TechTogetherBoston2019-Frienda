@@ -159,6 +159,7 @@ const sendTypingOn = (recipientId) => {
 module.exports = (event) => {
   console.log('processMessage-event', event);
   const senderId = event.sender.id;
+  console.log()
   const messageText = event.message.text;
   const messageAttachments = event.message.attachments;
   console.log('processMessage-message', messageText);
