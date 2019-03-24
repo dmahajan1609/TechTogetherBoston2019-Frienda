@@ -11,7 +11,7 @@ A chatbot to help tackle mental illness by providing the user an anonymous platf
 
 ## Pre-requisites
 
-- [Node.js](https://nodejs.org/en) and npm
+- [Node.js](https://nodejs.org/en), npm and [MongoDB](https://www.mongodb.com/)
 
 ## Built With
 
