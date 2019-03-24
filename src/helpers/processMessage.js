@@ -43,7 +43,7 @@ const callSendAPI = async (messageData) => {
       }
     })
     .catch(function (error) {
-      console.log(error.response.headers);
+      console.log(error);
     });
 }
 
