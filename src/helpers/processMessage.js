@@ -78,8 +78,13 @@ async function handleApiAiResponse(sender, response) {
  //const user=  await Users.save(sender, conversation);
     console.log('outgoing conversation object',conversation)
     const user=  await save(sender, conversation);
-
   console.log('invoked mongo', response);
+
+  if (response.result.fulfillment.speech.contains("Sure. Here\'s your improvement graph.")){
+    sendImageMessage(sender, response.result.fulfillment.speech);
+  }
+
+
   let responseText = response.result.fulfillment.speech;
 
   let responseData = response.result.fulfillment.data;
@@ -114,6 +119,23 @@ async function handleApiAiResponse(sender, response) {
     console.log('This is being sent back', responseText);
     sendTextMessage(sender, responseText);
   }
+}
+
+const sendImageMessage = async (recipientId, image) => {
+  var messageData = {
+    recipient: {
+      id: recipientId
+    },
+    message: {
+      attachment: {
+        type: "image",
+        payload: {
+          url:"https://raw.githubusercontent.com/dmahajan1609/TechTogetherBoston2019-Frienda/master/Sentiment%20Analyzer/Plot.png"
+        }
+      }
+    }
+  };
+    await callSendAPI(messageData);
 }
 
 
