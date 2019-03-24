@@ -121,7 +121,7 @@ async function handleApiAiResponse(sender, response) {
   }
 }
 
-const sendImageMessage = async (recipientId, image) => {
+const sendImageMessage = async (recipientId) => {
   var messageData = {
     recipient: {
       id: recipientId
