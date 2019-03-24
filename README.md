@@ -1,14 +1,13 @@
 # Facebook Messenger Bot
 
-A sample chatbot to show how to Natural Language Processing to a chatbot with the help of [Dialogflow](https://dialogflow.com)
+A chatbot to help tackle mental illness by providing the user an anonymous platform to open up. It also tracks user progress overtime and suggests prefessionals in the location of choice along with doing a sentiment analysis of the transcript to show the user's improvement when asked. 
 
-Tutorial: [How to create a Realtime Facebook Messenger Chatbot with Node.js and Dialogflow](https://blog.pusher.com/facebook-chatbot-dialogflow)
 
 ## Getting Started
 
 1. Clone this repository and cd into it.
 2. Execute npm install to download dependencies.
-3. See [tutorial](https://blog.pusher.com/facebook-chatbot-dialogflow) for notes on how to get the required keys from Dialogflow and Facebook
+3. run node index.js
 
 ## Pre-requisites
 
@@ -18,6 +17,12 @@ Tutorial: [How to create a Realtime Facebook Messenger Chatbot with Node.js and 
 
 - [Dialogflow](https://dialogflow.com) - For Natural Language Processing
 
-## Licence
+## Contributors
 
-[MIT](https://opensource.org/licenses/MIT)
+Divya Mahajan
+Fahmida Joyti
+Poorvi Rai
+Sofio Giorgadze
+Kamila Mirakhmedova
+
+
