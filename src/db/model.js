@@ -52,7 +52,7 @@ async function save(senderId, conversation) {
     console.log('model user', user);
     console.log('senderid ', senderId);
 
-    user = await User.findById(senderId);
+    user = await User.findOne({senderId});
     if (!user) {
         user = await User.create(new User({
             senderId: senderId
