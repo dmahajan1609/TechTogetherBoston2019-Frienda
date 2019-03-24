@@ -6,6 +6,7 @@ const sessionIds = new Map();
 const uuid = require("uuid");
 const axios = require('axios');
 const {Users} = require('../db/service')
+const {save} = require('../db/model');
 
 
 const sendTextMessage = async (recipientId, text) => {
@@ -74,7 +75,9 @@ async function handleApiAiResponse(sender, response) {
     userText: response.result.resolvedQuery,
     botText: response.result.fulfillment.speech
   }
- const user=  await Users.save(sender, conversation);
+ //const user=  await Users.save(sender, conversation);
+    console.log('outgoing conversation object',conversation)
+    const user=  await save(sender, conversation);
 
   console.log('invoked mongo', response);
   let responseText = response.result.fulfillment.speech;

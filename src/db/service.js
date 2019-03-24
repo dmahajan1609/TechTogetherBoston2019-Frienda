@@ -47,8 +47,7 @@ class Users {
             user.save().then(() => {
                 const conversation = new Conversation({
                     userText: conversation.userText,
-                    botText: conversation.botText,
-                    _user: user._id
+                    botText: conversation.botText
                 });
                 //console.log(user)
                 conversation.save().then((conversation) => {
