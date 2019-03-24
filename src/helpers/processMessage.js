@@ -66,7 +66,7 @@ function sendToApiAi(sender, text) {
 }
 
 
-function handleApiAiResponse(sender, response) {
+async function handleApiAiResponse(sender, response) {
 
   console.log('response from api divya', response);
 
@@ -74,7 +74,7 @@ function handleApiAiResponse(sender, response) {
     userText: response.result.resolvedQuery,
     botText: response.result.fulfillment.speech
   }
-  service.save(sender, conversation);
+  await service.save(sender, conversation);
 
   console.log('invoked mongo', response);
   let responseText = response.result.fulfillment.speech;

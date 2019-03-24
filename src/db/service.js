@@ -8,7 +8,7 @@ const {
 
 class Users {
 
-    static async save(senderId, conversation) {
+     async save(senderId, conversation) {
       console.log('inside here')
 
         try {
