@@ -1,37 +1,22 @@
 'use strict';
 
 const {
-    User,Conversation
+    User,
+    Conversation
 } = require('./model');
 
 
 
 class Users {
 
- static async save(senderId, conversation) {
-     let user;
-      console.log('inside here')
+    static async save(senderId, conversation) {
+        let user;
+        console.log('inside here')
 
         try {
-          console.log('inside try',senderId)
-/*
-        const user = await User.findOneAndUpdate({
-                senderId: senderId
-            }, {
-                $set: {
-                    'conversations.$.userText': conversation.userText,
-                    'conversations.$.botText': conversation.botText
-                }
-            });
-            /*
-            const user = await User.findOne({senderId: senderId}).populate('conversations');
-            const conversation = await Conversation.save(conversation);
+            console.log('inside try', senderId)
 
-            user.conversations.push(conversation);
-            user.save().then((user) => console.log(user)).catch((err) => console.log(err));
-            */
-
-       user = await User.findOne({
+            user = await User.findOne({
                 senderId: senderId
             }).populate('conversations');
             console.log('user value', user)
@@ -53,13 +38,13 @@ class Users {
                 conversation.save().then((conversation) => {
                     console.log(conversation._id)
                 }).catch((err) => {
-                    console.log('Inside conversation save',err);
+                    console.log('Inside conversation save', err);
                 });
                 user.conversations.push(conversation);
-                user.save().then((user) => console.log(user)).catch((err) => console.log('Failed to save user',err));
+                user.save().then((user) => console.log(user)).catch((err) => console.log('Failed to save user', err));
                 return user;
             }).catch((err) => {
-                console.log('Failed to save user outside',err);
+                console.log('Failed to save user outside', err);
 
             });
         }
@@ -67,6 +52,6 @@ class Users {
 
 }
 
-module.exports={
+module.exports = {
     Users
 }

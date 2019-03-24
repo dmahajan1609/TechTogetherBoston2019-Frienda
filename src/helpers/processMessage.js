@@ -5,8 +5,12 @@ const request = require('request');
 const sessionIds = new Map();
 const uuid = require("uuid");
 const axios = require('axios');
-const {Users} = require('../db/service')
-const {save} = require('../db/model');
+const {
+  Users
+} = require('../db/service')
+const {
+  save
+} = require('../db/model');
 
 
 const sendTextMessage = async (recipientId, text) => {
@@ -69,18 +73,18 @@ function sendToApiAi(sender, text) {
 
 async function handleApiAiResponse(sender, response) {
 
-  console.log('response from api divya', response);
+  console.log('response from api', response);
 
   let conversation = {
     userText: response.result.resolvedQuery,
     botText: response.result.fulfillment.speech
   }
- //const user=  await Users.save(sender, conversation);
-    console.log('outgoing conversation object',conversation)
-    const user=  await save(sender, conversation);
+  //const user=  await Users.save(sender, conversation);
+  console.log('outgoing conversation object', conversation)
+  const user = await save(sender, conversation);
   console.log('invoked mongo', response);
 
-  if (response.result.fulfillment.speech === "Sure. Here\'s your improvement graph. Great Job on the progress. Is there anything else I can help you with?"){
+  if (response.result.fulfillment.speech === "Sure. Here\'s your improvement graph. Great Job on the progress. Is there anything else I can help you with?") {
     sendImageMessage(sender, response.result.fulfillment.speech);
   }
 
@@ -130,12 +134,12 @@ const sendImageMessage = async (recipientId) => {
       attachment: {
         type: "image",
         payload: {
-          url:"https://raw.githubusercontent.com/dmahajan1609/TechTogetherBoston2019-Frienda/master/Sentiment%20Analyzer/Plot.png"
+          url: "https://raw.githubusercontent.com/dmahajan1609/TechTogetherBoston2019-Frienda/master/Sentiment%20Analyzer/Plot.png"
         }
       }
     }
   };
-    await callSendAPI(messageData);
+  await callSendAPI(messageData);
 }
 
 
