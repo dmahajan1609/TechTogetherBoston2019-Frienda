@@ -80,7 +80,7 @@ async function handleApiAiResponse(sender, response) {
     const user=  await save(sender, conversation);
   console.log('invoked mongo', response);
 
-  if (response.result.fulfillment.speech.contains("Sure. Here\'s your improvement graph.")){
+  if (response.result.fulfillment.speech === "Sure. Here\'s your improvement graph."){
     sendImageMessage(sender, response.result.fulfillment.speech);
   }
 
