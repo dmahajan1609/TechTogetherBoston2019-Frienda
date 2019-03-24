@@ -25,4 +25,6 @@ Poorvi Rai
 Sofio Giorgadze
 Kamila Mirakhmedova
 
+## License
 
+[MIT](https://opensource.org/licenses/MIT)
